@@ -8,7 +8,7 @@ const ChartItem = (props) => {
             <label>
                 {props.stock}
             </label>
-            <Chart data={props.data} width={500} height={300} ratio={10} />
+            <Chart data={props.data} width={420} height={300} ratio={10} />
         </div>
     )
 }

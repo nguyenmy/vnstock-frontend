@@ -73,7 +73,7 @@ class CandleStickChartWithMA extends React.Component {
 
 		console.log(ratio);
 		const start = xAccessor(last(data));
-		const end = xAccessor(data[Math.max(0, data.length - 55)]);
+		const end = xAccessor(data[Math.max(0, data.length - 60)]);
 		const xExtents = [start, end];
 		console.log(start);
 		console.log(end);
@@ -84,7 +84,6 @@ class CandleStickChartWithMA extends React.Component {
 				ratio={ratio}
 				margin={{ left: 70, right: 70, top: 10, bottom: 30 }}
 				type={type}
-				// seriesName="MSFT"
 				data={data}
 				xScale={xScale}
 				xAccessor={xAccessor}
@@ -107,54 +106,7 @@ class CandleStickChartWithMA extends React.Component {
 					<LineSeries yAccessor={ema10.accessor()} stroke={ema10.stroke()}/>
 					<LineSeries yAccessor={ema21.accessor()} stroke={ema21.stroke()}/>
 					<LineSeries yAccessor={ema50.accessor()} stroke={ema50.stroke()}/>
-					{/* <CurrentCoordinate yAccessor={sma20.accessor()} fill={sma20.stroke()} /> */}
-					{/* <CurrentCoordinate yAccessor={wma20.accessor()} fill={wma20.stroke()} /> */}
-					{/* <CurrentCoordinate yAccessor={tma20.accessor()} fill={tma20.stroke()} />
-					<CurrentCoordinate yAccessor={ema20.accessor()} fill={ema20.stroke()} />
-					<CurrentCoordinate yAccessor={ema50.accessor()} fill={ema50.stroke()} /> */}
-
 					<OHLCTooltip origin={[-40, 0]}/>
-					{/* <MovingAverageTooltip
-						onClick={e => console.log(e)}
-						origin={[-38, 15]}
-						options={[
-							{
-								yAccessor: sma20.accessor(),
-								type: "SMA",
-								stroke: sma20.stroke(),
-								windowSize: sma20.options().windowSize,
-								echo: "some echo here",
-							},
-							{
-								yAccessor: wma20.accessor(),
-								type: "WMA",
-								stroke: wma20.stroke(),
-								windowSize: wma20.options().windowSize,
-								echo: "some echo here",
-							},
-							{
-								yAccessor: tma20.accessor(),
-								type: "TMA",
-								stroke: tma20.stroke(),
-								windowSize: tma20.options().windowSize,
-								echo: "some echo here",
-							},
-							{
-								yAccessor: ema20.accessor(),
-								type: "EMA",
-								stroke: ema20.stroke(),
-								windowSize: ema20.options().windowSize,
-								echo: "some echo here",
-							},
-							{
-								yAccessor: ema50.accessor(),
-								type: "EMA",
-								stroke: ema50.stroke(),
-								windowSize: ema50.options().windowSize,
-								echo: "some echo here",
-							},
-						]}
-					/> */}
 				</Chart>
 				<Chart id={2}
 					yExtents={[d => d.volume, smaVolume50.accessor()]}

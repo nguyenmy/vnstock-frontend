@@ -3,11 +3,11 @@ import React from 'react';
 import Chart from './Chart';
 import { getData } from "./utils"
 import ChartItem from './ChartItem'
+import classes from './ChartList.module.css'
 class ChartList extends React.Component {
     componentDidMount() {
         getData().then(data => {
             this.setState({ data });
-            // console.log(data);
         })
     }
     render() {
@@ -16,10 +16,13 @@ class ChartList extends React.Component {
         }
         return (
             <React.Fragment>
+                <div className={classes.chartContainer}>
                 {this.state.data.map((element, index) => (
                     <ChartItem data={element.data} stock={element.code}></ChartItem>
                 ))}
                
+                </div>
+              
             </React.Fragment>
         )
     }
