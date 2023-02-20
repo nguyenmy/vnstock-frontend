@@ -1,3 +1,9 @@
-.chartitem{
-    position: relative !important;
+.chartItem{
+    width: 500px;
+    height: 400px;
+    float: left;
+    text-align: center;
+}
+.chartItem label{
+    font-weight: bold;
 }

@@ -3,7 +3,6 @@ import { timeParse } from "d3-time-format";
 import Papa from "papaparse"
 function parseData(parse) {
 	return function(d) {
-		// console.log(d);
 		d.date = parse(d.date);
 		d.open = +d.open;
 		d.high = +d.high;
@@ -15,14 +14,25 @@ function parseData(parse) {
 	};
 }
 
-
 const parseDate = timeParse("%Y-%m-%d");
 
 export function getData() {
-	const promiseMSFT = fetch("http://localhost/api/stocks/filters?pi=0&ps=20&stocks=DBC&volavg=50_50000")
-		.then(response => response.json() )
-		.then(data => Papa.unparse(data.stockHistories[0].Prices))
-		.then(data => csvParse(data, parseData(parseDate)))
+	const promiseMSFT = fetch("http://localhost/api/stocks/filters?pi=0&ps=20&volavg=50_50000")
+		.then(response =>response.json() )
+		.then(data => processData(data));
+		// .then(data => csvParse(data, parseData(parseDate)))
 		
 	return promiseMSFT;
+}
+
+function processData(jsonData){
+	var results=[]
+	jsonData.stockHistories.forEach(element => {
+		var stock={}
+		stock.code=element.Code;
+		stock.data = csvParse(Papa.unparse(element.Prices), parseData(parseDate)) 
+		results.push(stock)
+	});
+
+	return results;
 }

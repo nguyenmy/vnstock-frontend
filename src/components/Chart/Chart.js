@@ -1,7 +1,7 @@
 
 import React from "react";
 import PropTypes from "prop-types";
-import classes from "./ChartItem.module.css"
+import classes from "./Chart.module.css"
 import { format } from "d3-format";
 import { timeFormat } from "d3-time-format";
 
@@ -71,9 +71,12 @@ class CandleStickChartWithMA extends React.Component {
 			displayXAccessor,
 		} = xScaleProvider(calculatedData);
 
+		console.log(ratio);
 		const start = xAccessor(last(data));
-		const end = xAccessor(data[Math.max(0, data.length - 150)]);
+		const end = xAccessor(data[Math.max(0, data.length - 55)]);
 		const xExtents = [start, end];
+		console.log(start);
+		console.log(end);
 
 		return (
 			<ChartCanvas className={classes.chartitem} height={this.props.height}
@@ -81,7 +84,7 @@ class CandleStickChartWithMA extends React.Component {
 				ratio={ratio}
 				margin={{ left: 70, right: 70, top: 10, bottom: 30 }}
 				type={type}
-				seriesName="MSFT"
+				// seriesName="MSFT"
 				data={data}
 				xScale={xScale}
 				xAccessor={xAccessor}
@@ -92,8 +95,8 @@ class CandleStickChartWithMA extends React.Component {
 					yExtents={[d => [d.high, d.low], ema10.accessor(), ema21.accessor(), ema50.accessor()]}
 					padding={{ top: 10, bottom: 20 }}
 				>
-					<XAxis axisAt="bottom" orient="bottom"/>
-					<YAxis axisAt="right" orient="right" ticks={5} />
+					<XAxis axisAt="bottom" orient="bottom" ticks={3}/>
+					<YAxis axisAt="right" orient="right" ticks={3} />
 
 					<MouseCoordinateY
 						at="right"
@@ -157,7 +160,7 @@ class CandleStickChartWithMA extends React.Component {
 					yExtents={[d => d.volume, smaVolume50.accessor()]}
 					height={150} origin={(w, h) => [0, h - 150]}
 				>
-					<YAxis axisAt="left" orient="left" ticks={5} tickFormat={format(".2s")}/>
+					<YAxis axisAt="left" orient="left" ticks={3} tickFormat={format(".2s")}/>
 					<MouseCoordinateX
 						at="bottom"
 						orient="bottom"
