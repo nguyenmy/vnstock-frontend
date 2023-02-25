@@ -31,6 +31,7 @@ import { last } from "react-stockcharts/lib/utils";
 
 class CandleStickChartWithMA extends React.Component {
 	render() {
+		
 		const ema10 = ema()
 			.options({
 				windowSize: 10, // optional will default to 10
@@ -75,9 +76,7 @@ class CandleStickChartWithMA extends React.Component {
 		const start = xAccessor(last(data));
 		const end = xAccessor(data[Math.max(0, data.length - 60)]);
 		const xExtents = [start, end];
-		console.log(start);
-		console.log(end);
-
+		
 		return (
 			<ChartCanvas className={classes.chartitem} height={this.props.height}
 				width={width}
@@ -102,7 +101,7 @@ class CandleStickChartWithMA extends React.Component {
 						orient="right"
 						displayFormat={format(".2f")} />
 
-					<CandlestickSeries />
+					<CandlestickSeries clip={false}  />
 					<LineSeries yAccessor={ema10.accessor()} stroke={ema10.stroke()}/>
 					<LineSeries yAccessor={ema21.accessor()} stroke={ema21.stroke()}/>
 					<LineSeries yAccessor={ema50.accessor()} stroke={ema50.stroke()}/>
