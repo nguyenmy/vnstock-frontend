@@ -72,7 +72,6 @@ class CandleStickChartWithMA extends React.Component {
 			displayXAccessor,
 		} = xScaleProvider(calculatedData);
 
-		console.log(ratio);
 		const start = xAccessor(last(data));
 		const end = xAccessor(data[Math.max(0, data.length - 60)]);
 		const xExtents = [start, end];
@@ -82,6 +81,7 @@ class CandleStickChartWithMA extends React.Component {
 				width={width}
 				ratio={ratio}
 				margin={{ left: 70, right: 70, top: 10, bottom: 30 }}
+				seriesName="stocks"
 				type={type}
 				data={data}
 				xScale={xScale}
