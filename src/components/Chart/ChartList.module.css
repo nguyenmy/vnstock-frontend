@@ -1,14 +1,20 @@
-.chartContainer{
+.chartList{
     display: flex;
     align-content: flex-start;
     align-items: flex-start;
     flex-flow: row wrap;
-    justify-content: center;
+    justify-content: left;
     flex-direction: row;
+ 
 }
-.chartContainer > div {
+.chartList > div {
     background-color: #f1f1f1;
     margin: 15px;
     padding: 2px;
     font-size: 30px;
   }
+
+.chartContainer{
+    width: 80%;
+    margin: auto;
+}

@@ -16,12 +16,12 @@ function parseData(parse) {
 
 const parseDate = timeParse("%Y-%m-%d");
 
-export function getData(page) {
-	const promiseMSFT = fetch("http://localhost/api/stocks/filters?pi="+page+"&ps=20&volavg=50_50000")
+export function getData(page,pageSize,filterQuery) {
+	var url="http://localhost/api/stocks/filters?pi="+page+"&ps="+pageSize+"&"+filterQuery;
+	console.log(url);
+	const promiseMSFT = fetch(url)
 		.then(response =>response.json() )
-		.then(data => processData(data));
-		// .then(data => csvParse(data, parseData(parseDate)))
-		
+		.then(data => processData(data));		
 	return promiseMSFT;
 }
 
