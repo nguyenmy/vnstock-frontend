@@ -40,11 +40,11 @@ const Paging = (props) => {
         <div className={classes.pagination}>
             <ReactPaginate
                 breakLabel="..."
-                nextLabel="next >"
+                nextLabel=">"
                 onPageChange={handlePageClick}
                 pageRangeDisplayed={2}
                 pageCount={pageCount}
-                previousLabel="< previous"
+                previousLabel="<"
                 renderOnZeroPageCount={null}
                 breakClassName={"page-item"}
                 breakLinkClassName={"page-link"}
