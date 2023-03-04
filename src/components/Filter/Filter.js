@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUpLong } from '@fortawesome/free-solid-svg-icons'
 
 import classes from './Filter.module.css'
 const Filter = (props) => {
@@ -25,7 +23,6 @@ const Filter = (props) => {
     const handleFilterChange = (event) => {
         console.log(event.target.value);
         const { name, value } = event.target;
-
         setFilters((prevFilters) => ({ ...prevFilters, [name]: value }));
     };
 
@@ -38,7 +35,6 @@ const Filter = (props) => {
 
     const buildSearchQuery = () => {
         var query = "";
-
         if (filters.EMA10 !== "") {
             query = filters.EMA10;
         }
@@ -80,74 +76,98 @@ const Filter = (props) => {
         }
         return query;
     }
+
     return (
         <div className={classes.filterContainer}>
-            <form onSubmit={handleSearchSubmit} className="">
-                <div className="form-row">
-                    <div className="form-group col-sm-2">
-                        <label htmlFor="filterEma10">
-                            EMA 10
-                        </label>
-                        <select name="EMA10" id="filterEma10" className="form-control" value={filters.category} onChange={handleFilterChange}>
-                            <option value=""></option>
-                            <option value="ema10=1">above &#xf062;</option>
-                            <option value="ema10=2">below &#xf063;</option>
-                        </select>
-                    </div>
-                    <div className="form-group col-sm-2">
-                        <label htmlFor="filterEma21">
-                            EMA 21
-                        </label>
-                        <select name="EMA21" id="filterEma21" className="form-control" value={filters.priceRange} onChange={handleFilterChange}>
-                            <option value=""></option>
-                            <option value="ema21=1">above &#xf062;</option>
-                            <option value="ema21=2">below &#xf063;</option>
-                        </select>
-                    </div>
-                    <div className="form-group col-sm-2">
-                        <label htmlFor="filterEma50">
-                            EMA 50
-                        </label>
-                        <select name="EMA50" id="filterEma50" className="form-control" value={filters.EMA50} onChange={handleFilterChange}>
-                            <option value=""></option>
-                            <option value="ema50=1">above &#xf062;</option>
-                            <option value="ema50=2">below &#xf063;</option>
-                        </select>
-                    </div>
-                    <div className="form-group col-sm-2">
-                        <label htmlFor="filterEma200">
-                            EMA 200
-                        </label>
-                        <select name="EMA200" id="filterEma200" className="form-control" value={filters.EMA200} onChange={handleFilterChange}>
-                            <option value=""></option>
-                            <option value="ema200=1">above &#xf062;</option>
-                            <option value="ema200=2">below &#xf063;</option>
-                        </select>
-                    </div>
-                    <div className="form-group col-sm-2">
-                        <label htmlFor="filterPrice" >
-                            {'Price'}
-                        </label>
-                        <FontAwesomeIcon icon={faUpLong} />
+            <form onSubmit={handleSearchSubmit} >
+                <div className="card">
+                    <div class="card-body">
+                        <div className="form-row">
+                            <div className="form-group col-mb-1">
+                                <div className="input-group">
+                                    <select name="EMA10" id="filterEma10" className="form-control" value={filters.category} onChange={handleFilterChange}>
+                                        <option value=""></option>
+                                        <option value="ema10=1">above &#xf062;</option>
+                                        <option value="ema10=2">below &#xf063;</option>
+                                    </select>
+                                    <div class="input-group-append">
+                                        <span className="input-group-text" >{'EMA 10'}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="form-group col-mb-1">
+                                <div className="input-group">
+                                    <select name="EMA21" id="filterEma21" className="form-control" value={filters.priceRange} onChange={handleFilterChange}>
+                                        <option value=""></option>
+                                        <option value="ema21=1">above &#xf062;</option>
+                                        <option value="ema21=2">below &#xf063;</option>
+                                    </select>
+                                    <div class="input-group-append">
+                                        <span className="input-group-text" >{'EMA 21'}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="form-group col-mb-1">
+                                <div className="input-group">
+                                    <select name="EMA50" id="filterEma50" className="form-control" value={filters.EMA50} onChange={handleFilterChange}>
+                                        <option value=""></option>
+                                        <option value="ema50=1">above &#xf062;</option>
+                                        <option value="ema50=2">below &#xf063;</option>
+                                    </select>
+                                    <div class="input-group-append">
+                                        <span className="input-group-text" >{'EMA 50'}</span>
+                                    </div>
+                                </div>
 
-                        <input name="Price" id="filterPrice" className="form-control" type="number" value={filters.Price} onChange={handleFilterChange} ></input>
-                    </div>
-                    <div className="form-row col-sm-4">
-                        <div className="form-group col-sm-6">
-                            <label htmlFor="filterVolumeDays" >
-                                Average volume :
-                            </label>
-                            <input name="VolumeDays" id="filterVolumeDays" className="form-control" type="number" value={filters.VolumeDays} onChange={handleFilterChange} ></input>
+                            </div>
+                            <div className="form-group col-mb-1">
+                                <div className="input-group">
+                                    <select name="EMA200" id="filterEma200" className="form-control" value={filters.EMA200} onChange={handleFilterChange}>
+                                        <option value=""></option>
+                                        <option value="ema200=1">above &#xf062;</option>
+                                        <option value="ema200=2">below &#xf063;</option>
+                                    </select>
+                                    <div class="input-group-append">
+                                        <span className="input-group-text" >{'EMA 200'}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="form-group col-mb-1">
+                                <div className="input-group">
+                                    <div class="input-group-prepend">
+                                        <span className="input-group-text" >{'Price'}</span>
+                                    </div>
+                                    <div class="input-group-prepend">
+                                        <span className="input-group-text" >{'>='}</span>
+                                    </div>
+                                    <input name="Price" id="filterPrice" className="form-control" type="number" value={filters.Price} onChange={handleFilterChange} ></input>
+                                    <div class="input-group-append">
+                                        <span className="input-group-text" >{'VND'}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="form-group col-mb-1">
+                                <div className="form-group">
+                                    <div className="input-group">
+                                        <div class="input-group-prepend">
+                                            <span className="input-group-text" >{'Average volume'}</span>
+                                        </div>
+                                        <input name="VolumeDays" id="filterVolumeDays" className="form-control" type="number" value={filters.VolumeDays} onChange={handleFilterChange} ></input>
+                                        <div class="input-group-prepend">
+                                            <span className="input-group-text" >Days</span>
+                                        </div>
+                                        <div class="input-group-prepend">
+                                            <span className="input-group-text" >{'>='}</span>
+                                        </div>
+                                        <input name="VolumeAvg" id="filterVolumeAvg" className="form-control" type="number" value={filters.VolumeAvg} onChange={handleFilterChange}></input>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div className="form-group col-sm-6">
-                            <label htmlFor="filterVolumeAvg">
-                                <FontAwesomeIcon icon={faUpLong} />
-                            </label>
-                            <input name="VolumeAvg" id="filterVolumeAvg" className="form-control" type="number" value={filters.VolumeAvg} onChange={handleFilterChange}></input>
-                        </div>
+                        <button type="submit" className="btn btn-primary">Search</button>
                     </div>
                 </div>
-                <button type="submit" className="btn btn-primary">Search</button>
+
             </form>
         </div>
     );

@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 
 const Dropdown = (props) => {
     const [pageSize, setPageSize] = useState(props.defaultPageSize);
@@ -9,14 +9,19 @@ const Dropdown = (props) => {
 
     return (
         <React.Fragment>
-            <label>{props.label}</label>
-            <select value={pageSize} onChange={handlePageSizeChange}>
-                <option value="10">10</option>
-                <option value="20">20</option>
-                <option value="30">30</option>
-                <option value="40">40</option>
-                <option value="50">50</option>
-            </select>
+            <div className="input-group col-2">
+                <div class="input-group-prepend">
+                    <span className="input-group-text" >{props.label}</span>
+                </div>
+                <select className="form-control" value={pageSize} onChange={handlePageSizeChange}>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                </select>
+            </div>
+
         </React.Fragment>
 
     );
