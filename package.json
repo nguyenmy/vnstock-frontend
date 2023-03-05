@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "npm test",
-    "build": "webpack --mode production",
-    "start": "react-scripts start"
+    "build": "react-scripts build",
+    "start": "webpack"
   },
   "keywords": [
     "vnstock"
