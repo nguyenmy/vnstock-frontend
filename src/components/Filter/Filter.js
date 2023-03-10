@@ -84,7 +84,7 @@ const Filter = (props) => {
                     <div class="card-body">
                         <div className="form-row">
                             <div className="form-group col-mb-1">
-                                <div className="input-group">
+                                <div className="input-group input-group-sm">
                                     <select name="EMA10" id="filterEma10" className="form-control" value={filters.category} onChange={handleFilterChange}>
                                         <option value=""></option>
                                         <option value="ema10=1">above &#xf062;</option>
@@ -96,7 +96,7 @@ const Filter = (props) => {
                                 </div>
                             </div>
                             <div className="form-group col-mb-1">
-                                <div className="input-group">
+                                <div className="input-group input-group-sm">
                                     <select name="EMA21" id="filterEma21" className="form-control" value={filters.priceRange} onChange={handleFilterChange}>
                                         <option value=""></option>
                                         <option value="ema21=1">above &#xf062;</option>
@@ -108,7 +108,7 @@ const Filter = (props) => {
                                 </div>
                             </div>
                             <div className="form-group col-mb-1">
-                                <div className="input-group">
+                                <div className="input-group input-group-sm">
                                     <select name="EMA50" id="filterEma50" className="form-control" value={filters.EMA50} onChange={handleFilterChange}>
                                         <option value=""></option>
                                         <option value="ema50=1">above &#xf062;</option>
@@ -121,7 +121,7 @@ const Filter = (props) => {
 
                             </div>
                             <div className="form-group col-mb-1">
-                                <div className="input-group">
+                                <div className="input-group input-group-sm ">
                                     <select name="EMA200" id="filterEma200" className="form-control" value={filters.EMA200} onChange={handleFilterChange}>
                                         <option value=""></option>
                                         <option value="ema200=1">above &#xf062;</option>
@@ -133,7 +133,7 @@ const Filter = (props) => {
                                 </div>
                             </div>
                             <div className="form-group col-mb-1">
-                                <div className="input-group">
+                                <div className="input-group input-group-sm">
                                     <div class="input-group-prepend">
                                         <span className="input-group-text" >{'Price'}</span>
                                     </div>
@@ -147,8 +147,8 @@ const Filter = (props) => {
                                 </div>
                             </div>
                             <div className="form-group col-mb-1">
-                                <div className="form-group">
-                                    <div className="input-group">
+                                <div className="form-group input-group-sm">
+                                    <div className="input-group input-group-sm">
                                         <div class="input-group-prepend">
                                             <span className="input-group-text" >{'Average volume'}</span>
                                         </div>
@@ -164,7 +164,7 @@ const Filter = (props) => {
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" className="btn btn-primary">Search</button>
+                        <button type="submit" className="btn btn-primary form-control-sm">Search</button>
                     </div>
                 </div>
 

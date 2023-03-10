@@ -9,8 +9,8 @@ const Dropdown = (props) => {
 
     return (
         <React.Fragment>
-            <div className="input-group col-2">
-                <div class="input-group-prepend">
+            <div className="input-group col-2 input-group-sm">
+                <div class="input-group-prepend ">
                     <span className="input-group-text" >{props.label}</span>
                 </div>
                 <select className="form-control" value={pageSize} onChange={handlePageSizeChange}>

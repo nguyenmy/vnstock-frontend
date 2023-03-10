@@ -6,5 +6,12 @@ RUN npm ci --force
 RUN npm run build
 ENV NODE_ENV production
 
-EXPOSE 3000
-CMD [ "npm", "start" ]
+FROM nginx:1.15
+COPY --from=builder /app/build/ /var/www/dist/
+COPY --from=builder /app/nginx.conf /etc/nginx/nginx.conf
+RUN apt-get update && apt-get install -y curl
+
+HEALTHCHECK --interval=1m --timeout=3s \
+  CMD curl -f http://localhost || exit 1
+
+CMD ["nginx", "-g", "daemon off;"]
