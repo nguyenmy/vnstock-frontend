@@ -164,7 +164,7 @@ const Filter = (props) => {
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" className="btn btn-primary form-control-sm">Search</button>
+                        <button type="submit" className="btn btn-primary btn-sm">Search</button>
                     </div>
                 </div>
 
