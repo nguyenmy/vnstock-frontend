@@ -6,7 +6,7 @@ RUN npm ci --force
 RUN npm run build
 ENV NODE_ENV production
 
-FROM nginx:1.15
+FROM nginx:1.24
 COPY --from=builder /app/build/ /var/www/dist/
 COPY --from=builder /app/nginx.conf /etc/nginx/nginx.conf
 RUN apt-get update && apt-get install -y curl

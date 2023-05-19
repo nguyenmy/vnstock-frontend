@@ -8,7 +8,7 @@ const Filter = (props) => {
         EMA50: "",
         EMA200: "",
         VolumeDays: 20,
-        VolumeAvg: 50000,
+        VolumeAvg: 15000,
         Price: 5000
     });
 
