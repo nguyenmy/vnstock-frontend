@@ -9,7 +9,10 @@ const Filter = (props) => {
         EMA200: "",
         VolumeDays: 20,
         VolumeAvg: 15000,
-        Price: 5000
+        Price: 5000,
+        FlatBaseDays:0,
+        FlatBasePercentages:0,
+        NearEMA: "",
     });
 
     useEffect(() => {
@@ -59,6 +62,13 @@ const Filter = (props) => {
             query = query + filters.EMA200;
         }
 
+        if (filters.NearEMA !== "") {
+            if (query.length > 0) {
+                query = query + "&";
+            }
+            query = query + "near_ema=" + filters.NearEMA;
+        }
+
         if ((+filters.VolumeDays) !== 0 && (+filters.VolumeAvg) !== 0) {
             console.log(filters.VolumeDays, filters.VolumeAvg);
             if (query.length > 0) {
@@ -67,6 +77,16 @@ const Filter = (props) => {
 
             query = query + "volavg=" + filters.VolumeDays + "_" + filters.VolumeAvg;
         }
+
+        if ((+filters.FlatBaseDays) !== 0 && (+filters.FlatBasePercentages) !== 0) {
+            console.log(filters.FlatBaseDays, filters.FlatBasePercentages);
+            if (query.length > 0) {
+                query = query + "&";
+            }
+
+            query = query + "flat_base=" + filters.FlatBaseDays + "_" + filters.FlatBasePercentages;
+        }
+
         if ((+filters.Price) !== 0) {
             if (query.length > 0) {
                 query = query + "&";
@@ -161,6 +181,41 @@ const Filter = (props) => {
                                         </div>
                                         <input name="VolumeAvg" id="filterVolumeAvg" className="form-control" type="number" value={filters.VolumeAvg} onChange={handleFilterChange}></input>
                                     </div>
+                                </div>
+                            </div>
+                            <div className="form-group col-mb-1">
+                                <div className="form-group input-group-sm">
+                                    <div className="input-group input-group-sm">
+                                        <div class="input-group-prepend">
+                                            <span className="input-group-text" >{'Flat base'}</span>
+                                        </div>
+                                        <input name="FlatBaseDays" id="filterFlatBaseDays" className="form-control" type="number" value={filters.FlatBaseDays} onChange={handleFilterChange} ></input>
+                                        <div class="input-group-prepend">
+                                            <span className="input-group-text" >Days</span>
+                                        </div>
+                                        <div class="input-group-prepend">
+                                            <span className="input-group-text" >{'<='}</span>
+                                        </div>
+                                        <input name="FlatBasePercentages" id="filterFlatBasePercentages" className="form-control" type="number" value={filters.FlatBasePercentages} onChange={handleFilterChange}></input>
+                                        <div class="input-group-append">
+                                            <span className="input-group-text" >{'%'}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="form-group col-mb-1">
+                                <div className="input-group input-group-sm ">
+                                <div class="input-group-prepend">
+                                        <span className="input-group-text" >{'Price near an EMA'}</span>
+                                    </div>
+                                    <select name="NearEMA" id="filterNearEMA" className="form-control" value={filters.NearEMA} onChange={handleFilterChange}>
+                                        <option value=""></option>
+                                        <option value="10">EMA 10</option>
+                                        <option value="21">EMA 21</option>
+                                        <option value="50">EMA 50</option>
+                                        <option value="200">EMA 200</option>
+                                    </select>
+                                   
                                 </div>
                             </div>
                         </div>
