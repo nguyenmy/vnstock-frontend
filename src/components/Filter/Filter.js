@@ -13,6 +13,7 @@ const Filter = (props) => {
         FlatBaseDays:0,
         FlatBasePercentages:0,
         NearEMA: "",
+        StrongestStockInWeeks:0
     });
 
     useEffect(() => {
@@ -86,7 +87,13 @@ const Filter = (props) => {
 
             query = query + "flat_base=" + filters.FlatBaseDays + "_" + filters.FlatBasePercentages;
         }
+        if ((+filters.StrongestStockInWeeks) !== 0) {
+            if (query.length > 0) {
+                query = query + "&";
+            }
 
+            query = query + "weeks=" + filters.StrongestStockInWeeks;
+        }
         if ((+filters.Price) !== 0) {
             if (query.length > 0) {
                 query = query + "&";
@@ -216,6 +223,17 @@ const Filter = (props) => {
                                         <option value="200">EMA 200</option>
                                     </select>
                                    
+                                </div>
+                            </div>
+                            <div className="form-group col-mb-1">
+                                <div className="input-group input-group-sm ">
+                                <div class="input-group-prepend">
+                                        <span className="input-group-text" >{'Order by strongest stock in'}</span>
+                                    </div>
+                                    <input name="StrongestStockInWeeks" id="filterStrongestStockInWeeks" className="form-control" type="number" value={filters.StrongestStockInWeeks} onChange={handleFilterChange}></input>
+                                        <div class="input-group-append">
+                                            <span className="input-group-text" >{'weeks'}</span>
+                                        </div>
                                 </div>
                             </div>
                         </div>
