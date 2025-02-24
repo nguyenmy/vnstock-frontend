@@ -17,7 +17,7 @@ function parseData(parse) {
 const parseDate = timeParse("%Y-%m-%d");
 
 export function getData(page, pageSize, filterQuery) {
-	var url = "http://localhost/api/stocks/filters?pi=" + page + "&ps=" + pageSize + "&" + filterQuery;
+	var url = "http://localhost:4000/stocks/filters?pi=" + page + "&ps=" + pageSize + "&" + filterQuery;
 	console.log(url);
 	const promiseMSFT = fetch(url)
 		.then(response => response.json())
