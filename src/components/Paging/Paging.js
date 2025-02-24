@@ -1,40 +1,27 @@
-import {react, useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import classes from './Paging.module.css'
 import { getData } from "../Chart/utils"
 
 const Paging = (props) => {
-    const [pageCount, setPageCount] = useState(5);
-    const [currentItems, setCurrentItems] = useState(null);
-    const [itemOffset, setItemOffset] = useState(0);
-    const [currentPage, setCurrentPage]=useState(0);
-    const itemsPerPage=20;
-    console.log("useEffect1");
-
-    // useEffect(()=>{
-    //     console.log("useEffect1");
-
-    // });
-
+    const [pageCount, setPageCount] = useState(0);
+    const [currentPage, setCurrentPage] = useState(0);
     useEffect(() => {
-        // Fetch items from another resources.
-        getData(currentPage).then(data => {
+        getData(currentPage, props.pageSize, props.filterQuery).then(data => {
             props.setData(data);
+            console.log(data.searchCount);
+            setPageCount(Math.ceil(data.searchCount / props.pageSize));
+            console.log(pageCount);
+            console.log(props.pageSize);
+            console.log(data);
 
-            const endOffset = itemOffset + itemsPerPage;
-            console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-            // setCurrentItems(data.stockHistories);
-            setPageCount(Math.ceil(data.searchCount / itemsPerPage));
         })
 
-      }, [currentPage, itemsPerPage]);
+    }, [currentPage, props.pageSize, props.filterQuery]);
 
     const handlePageClick = (event) => {
-        console.log(event.selected);
-        // const newOffset = (event.selected * 8) % images.length;
-        // setImagesOffset(newOffset);
         setCurrentPage(event.selected);
-      };
+    };
 
     return (
         <div className={classes.pagination}>

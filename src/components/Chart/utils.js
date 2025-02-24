@@ -1,8 +1,8 @@
-import { csvParse } from  "d3-dsv";
+import { csvParse } from "d3-dsv";
 import { timeParse } from "d3-time-format";
 import Papa from "papaparse"
 function parseData(parse) {
-	return function(d) {
+	return function (d) {
 		d.date = parse(d.date);
 		d.open = +d.open;
 		d.high = +d.high;
@@ -16,24 +16,24 @@ function parseData(parse) {
 
 const parseDate = timeParse("%Y-%m-%d");
 
-export function getData(page) {
-	const promiseMSFT = fetch("http://localhost/api/stocks/filters?pi="+page+"&ps=20&volavg=50_50000")
-		.then(response =>response.json() )
+export function getData(page, pageSize, filterQuery) {
+	var url = "http://localhost:4000/stocks/filters?pi=" + page + "&ps=" + pageSize + "&" + filterQuery;
+	console.log(url);
+	const promiseMSFT = fetch(url)
+		.then(response => response.json())
 		.then(data => processData(data));
-		// .then(data => csvParse(data, parseData(parseDate)))
-		
 	return promiseMSFT;
 }
 
-function processData(jsonData){
-	var results={
-		stocks:[],
-		searchCount:jsonData.searchCount
+function processData(jsonData) {
+	var results = {
+		stocks: [],
+		searchCount: jsonData.searchCount
 	}
 	jsonData.stockHistories.forEach(element => {
-		var stock={}
-		stock.code=element.Code;
-		stock.data = csvParse(Papa.unparse(element.Prices), parseData(parseDate)) 
+		var stock = {}
+		stock.code = element.Code;
+		stock.data = csvParse(Papa.unparse(element.Prices), parseData(parseDate))
 		results.stocks.push(stock)
 	});
 
